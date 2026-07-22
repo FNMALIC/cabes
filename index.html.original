@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CABES — Proposition B : Trajectoire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,900&display=swap">
+<style>
+  :root{
+    --blue:#1467B4; --blue-deep:#0B3D6B; --blue-night:#082A4B; --gold:#F2A91E; --red:#E01B22;
+    --bg:#FFFFFF; --bg-alt:#F7F7F5; --line:#E5E5E3; --text:#161616; --muted:#6B6B68;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); line-height:1.6; overflow-x:hidden;}
+  .display{font-family:'Cabinet Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px; position:relative;}
+  a{color:inherit; text-decoration:none;}
+
+  header{position:absolute; top:0; left:0; right:0; z-index:10; padding:26px 0;}
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-family:'Cabinet Grotesk',sans-serif; font-weight:900; font-size:26px; color:#fff; letter-spacing:0.5px;}
+  .logo span{color:var(--gold);}
+  nav{display:flex; gap:30px; font-size:14px; font-weight:500; color:#fff;}
+  .btn{display:inline-block; padding:13px 28px; font-size:14px; font-weight:600; border-radius:3px; cursor:pointer;}
+  .btn-gold{background:var(--gold); color:var(--blue-night);}
+  .btn-ghost{border:1px solid rgba(255,255,255,.5); color:#fff;}
+  .btn-row{display:flex; gap:14px; margin-top:36px;}
+
+  /* hero */
+  .hero{position:relative; background:linear-gradient(150deg,var(--blue-night) 0%, var(--blue-deep) 55%, var(--blue) 100%); padding:150px 0 220px; color:#fff; clip-path:polygon(0 0,100% 0,100% 92%,0 100%);}
+  .hero .wrap{display:grid; grid-template-columns:1fr; max-width:760px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:20px;}
+  h1{font-family:'Cabinet Grotesk',sans-serif; font-weight:900; font-size:56px; line-height:1.05; letter-spacing:-1px;}
+  .sub{margin-top:22px; font-size:17px; color:#c9d7e6; max-width:520px;}
+
+  /* trajectory line */
+  #trajectory{position:absolute; top:0; left:0; width:100%; height:1650px; pointer-events:none; z-index:1;}
+  #trajectory path{fill:none; stroke:var(--gold); stroke-width:2.5; stroke-dasharray:2400; stroke-dashoffset:2400; transition:stroke-dashoffset .1s linear;}
+
+  section{padding:90px 0; position:relative; z-index:2;}
+  .section-dark{background:var(--blue-night); color:#fff;}
+  .kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:16px;}
+  h2{font-family:'Cabinet Grotesk',sans-serif; font-weight:800; font-size:34px; margin-bottom:20px; letter-spacing:-0.5px;}
+  .lede{color:var(--muted); max-width:600px; margin-bottom:40px;}
+  .section-dark .lede{color:#aebdcd;}
+
+  /* about */
+  .about{margin-top:-90px; position:relative; z-index:5;}
+  .about-card{background:#fff; box-shadow:0 30px 60px rgba(11,61,107,.15); padding:56px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px;}
+  .about-card p{margin-bottom:14px; color:var(--muted); max-width:480px;}
+
+  /* impact / waypoint */
+  .waypoint{text-align:center;}
+  .waypoint .num{font-family:'Cabinet Grotesk',sans-serif; font-weight:900; font-size:120px; color:var(--gold); line-height:1;}
+  .waypoint p{max-width:620px; margin:18px auto 0; color:#c9d7e6; font-size:17px;}
+
+  /* stats */
+  .stats-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px;}
+  .stat{background:rgba(255,255,255,.04); padding:32px 24px; border:1px solid rgba(255,255,255,.08); text-align:center;}
+  .stat-num{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:32px; color:var(--gold);}
+  .stat-label{font-size:12px; color:#aebdcd; margin-top:8px; text-transform:uppercase; letter-spacing:0.5px;}
+
+  /* services */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .service{background:var(--blue-night); border:1px solid rgba(255,255,255,.08); padding:30px 26px; transition:transform .2s, box-shadow .2s;}
+  .service:hover{transform:translateY(-4px); box-shadow:0 16px 30px rgba(242,169,30,.15); border-color:var(--gold);}
+  .service-icon{width:38px; height:38px; background:rgba(242,169,30,.12); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; margin-bottom:18px;}
+  .service h4{font-family:'Cabinet Grotesk',sans-serif; font-weight:700; font-size:17px; margin-bottom:8px;}
+  .service p{font-size:13px; color:#aebdcd;}
+  .section-light .service{background:#fff; color:var(--text); border-color:var(--line);}
+  .section-light .service p{color:var(--muted);}
+
+  /* why */
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .why-item{padding:20px 0; border-top:2px solid var(--gold);}
+  .why-item span{font-size:14px; font-weight:500;}
+
+  /* leadership */
+  .leader{display:grid; grid-template-columns:0.6fr 1fr; gap:60px; align-items:center; position:relative;}
+  .leader-photo{aspect-ratio:3/4; background:linear-gradient(160deg,#123a5e,#0b2540); max-width:320px; position:relative;}
+  .leader-photo::after{content:"Photo professionnelle"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#7c93ab; font-size:13px;}
+  .leader-bg-text{position:absolute; right:0; top:-40px; font-family:'Cabinet Grotesk',sans-serif; font-weight:900; font-size:180px; color:rgba(255,255,255,.03); z-index:0; line-height:1;}
+  .leader h3{font-family:'Cabinet Grotesk',sans-serif; font-size:26px;}
+  .leader .role{font-size:13px; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin:8px 0 20px;}
+  .leader p{color:#c9d7e6; max-width:440px;}
+  .leader q{font-family:'Cabinet Grotesk',sans-serif; font-size:20px; display:block; margin-top:24px; color:#fff;}
+
+  /* contact */
+  .contact-card{background:#fff; color:var(--text); padding:48px; box-shadow:0 30px 60px rgba(0,0,0,.25); max-width:520px; margin-left:auto;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;}
+  .field input, .field textarea{width:100%; border:1px solid var(--line); padding:12px 14px; font-family:'Inter',sans-serif; font-size:14px;}
+  .info-row{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,.12); font-size:14px; color:#c9d7e6;}
+  .info-row .mono{color:var(--gold);}
+
+  footer{background:#061c30; color:#fff; padding:48px 0 24px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
+  .foot-links{display:flex; gap:32px; font-size:13px;}
+  .foot-links a{opacity:.8;}
+  .foot-rule{height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:32px 0 20px;}
+  .copyright{font-size:12px; opacity:.5; text-align:center;}
+
+  @media(max-width:860px){
+    .about-card, .leader, .contact-grid{grid-template-columns:1fr;}
+    .stats-grid, .services-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    h1{font-size:38px;}
+    nav{display:none;}
+    .contact-card{margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<svg id="trajectory" viewBox="0 0 1180 1650" preserveAspectRatio="none">
+  <path d="M 120 140 C 300 260, 260 420, 460 480 S 720 560, 780 700 S 620 900, 700 1050 S 950 1250, 880 1420" />
+</svg>
+
+<header>
+  <div class="wrap">
+    <div class="logo">CABES<span>.</span></div>
+    <nav>
+      <a href="#">Le Cabinet</a>
+      <a href="#">Expertises</a>
+      <a href="#">Équipe</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a href="#" class="btn btn-ghost">Prendre rendez-vous</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Cabinet Express Services — Douala</div>
+    <h1>19 ans de trajectoire.<br>Une seule direction : la performance.</h1>
+    <p class="sub">CABES accompagne entreprises, institutions et organisations dans la sécurisation financière, l'optimisation des ressources et la gestion des risques.</p>
+    <div class="btn-row">
+      <a href="#" class="btn btn-gold">Prendre rendez-vous</a>
+      <a href="#" class="btn btn-ghost">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-card">
+      <div>
+        <div class="kicker" style="color:var(--blue);">À propos de CABES</div>
+        <h2 style="color:var(--blue-night);">Un partenaire stratégique en croissance continue</h2>
+        <p>Fondé à Douala, CABES s'est imposé comme un partenaire de confiance pour les entreprises et institutions qui souhaitent sécuriser leur trésorerie et maîtriser leur risque client.</p>
+        <p>Notre trajectoire : une expertise multidisciplinaire, une intervention nationale, un accompagnement personnalisé.</p>
+      </div>
+      <div>
+        <div style="border-top:2px solid var(--gold); padding-top:16px; margin-bottom:20px;"><strong>Mission</strong><p style="margin:4px 0 0; font-size:13px;">Sécuriser et optimiser les ressources de nos partenaires.</p></div>
+        <div style="border-top:2px solid var(--gold); padding-top:16px;"><strong>Vision</strong><p style="margin:4px 0 0; font-size:13px;">Être la référence en gestion des risques en Afrique centrale.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark waypoint">
+  <div class="wrap">
+    <div class="kicker">19 ans d'impact et de performance</div>
+    <div class="num">19</div>
+    <p>Dix-neuf années de trajectoire ascendante — de la sécurisation des premières créances à un réseau de plus de 150 partenaires à travers le pays.</p>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="wrap">
+    <div class="kicker">Chiffres clés</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num">19</div><div class="stat-label">Ans d'expérience</div></div>
+      <div class="stat"><div class="stat-num">99%</div><div class="stat-label">Satisfaction client</div></div>
+      <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Partenaires</div></div>
+      <div class="stat"><div class="stat-num">3000</div><div class="stat-label">Bénéficiaires</div></div>
+      <div class="stat"><div class="stat-num">05</div><div class="stat-label">Conventions majeures</div></div>
+      <div class="stat"><div class="stat-num">05</div><div class="stat-label">Formations nationales</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-light">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--blue);">Nos domaines d'expertise</div>
+    <h2 style="color:var(--blue-night);">Neuf domaines d'intervention</h2>
+    <div class="services-grid">
+      <div class="service"><div class="service-icon">01</div><h4>Affacturage</h4><p>Cession de créances et financement de trésorerie.</p></div>
+      <div class="service"><div class="service-icon">02</div><h4>Recouvrement</h4><p>Recouvrement amiable et contentieux de créances.</p></div>
+      <div class="service"><div class="service-icon">03</div><h4>Gestion du risque client</h4><p>Analyse et maîtrise du risque de contrepartie.</p></div>
+      <div class="service"><div class="service-icon">04</div><h4>Suivi des conventions</h4><p>Pilotage et suivi des accords contractuels.</p></div>
+      <div class="service"><div class="service-icon">05</div><h4>Enquêtes documentaires</h4><p>Vérification et fiabilisation des dossiers.</p></div>
+      <div class="service"><div class="service-icon">06</div><h4>Enquêtes sur sinistres</h4><p>Investigation et analyse des sinistres déclarés.</p></div>
+      <div class="service"><div class="service-icon">07</div><h4>Études de marché</h4><p>Analyse sectorielle et positionnement stratégique.</p></div>
+      <div class="service"><div class="service-icon">08</div><h4>Formation professionnelle</h4><p>Programmes de formation sur mesure.</p></div>
+      <div class="service"><div class="service-icon">09</div><h4>Gestion de projets</h4><p>Pilotage de projets pour le compte de nos partenaires.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="wrap">
+    <div class="kicker">Pourquoi choisir CABES</div>
+    <div class="why-grid">
+      <div class="why-item"><span>19 ans d'expérience</span></div>
+      <div class="why-item"><span>Expertise multidisciplinaire</span></div>
+      <div class="why-item"><span>Intervention nationale</span></div>
+      <div class="why-item"><span>Accompagnement personnalisé</span></div>
+      <div class="why-item"><span>Solutions sur mesure</span></div>
+      <div class="why-item"><span>Approche orientée résultats</span></div>
+      <div class="why-item"><span>Professionnalisme</span></div>
+      <div class="why-item"><span>Confidentialité</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" style="overflow:hidden;">
+  <div class="wrap leader">
+    <div class="leader-bg-text">CABES</div>
+    <div class="leader-photo"></div>
+    <div>
+      <div class="kicker">Notre leadership</div>
+      <h3>[Nom du Directeur Général]</h3>
+      <div class="role">Directeur Général, CABES</div>
+      <p>Sous sa direction, CABES a transformé 19 années d'expérience en une trajectoire de croissance continue, au service de partenaires toujours plus nombreux.</p>
+      <q>Notre exigence de chaque jour : mériter la confiance de nos partenaires.</q>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="contact">
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:56px;">
+    <div>
+      <div class="kicker">Contact</div>
+      <h2>Prendre rendez-vous</h2>
+      <p class="lede">Nos équipes vous répondent sous 24h ouvrées.</p>
+      <div class="info-row"><span>Téléphone</span><span class="mono">+237 690 564 474</span></div>
+      <div class="info-row"><span>Email</span><span class="mono">infos.cabes@gmail.com</span></div>
+      <div class="info-row"><span>Adresse</span><span>Entrée Gare Bessengué, Rue 1477 Case 451, Douala</span></div>
+    </div>
+    <div class="contact-card">
+      <div class="field"><label>Nom</label><input type="text"></div>
+      <div class="field"><label>Entreprise</label><input type="text"></div>
+      <div class="field"><label>Email</label><input type="email"></div>
+      <div class="field"><label>Message</label><textarea rows="3"></textarea></div>
+      <a href="#" class="btn btn-gold" style="width:100%; text-align:center; display:block;">Envoyer la demande</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">CABES<span>.</span></div>
+    <div class="foot-links">
+      <a href="#">Le Cabinet</a>
+      <a href="#">Expertises</a>
+      <a href="#">Équipe</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="foot-rule"></div>
+    <div class="copyright">© 2026 CABINET EXPRESS SERVICES Sarl — Douala, Cameroun</div>
+  </div>
+</footer>
+
+<script>
+  // Draw the trajectory line progressively as the user scrolls (respects reduced motion)
+  const path = document.querySelector('#trajectory path');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function updateTrajectory(){
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = Math.min(window.scrollY / (docHeight * 0.55), 1);
+    const length = 2400;
+    path.style.strokeDashoffset = prefersReduced ? 0 : length - (length * progress);
+  }
+  window.addEventListener('scroll', updateTrajectory);
+  window.addEventListener('resize', updateTrajectory);
+  updateTrajectory();
+</script>
+
+</body>
+</html>

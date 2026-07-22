@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue: #1467b4;
+  --color-blue-deep: #0b3d6b;
+  --color-blue-night: #082a4b;
+  --color-gold: #f2a91e;
+  --color-cabes-red: #e01b22;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f7f7f5;
+  --color-line: #e5e5e3;
+  --color-text: #161616;
+  --color-muted: #6b6b68;
+  --color-slate-soft: #c9d7e6;
+  --color-slate-mid: #aebdcd;
+  --color-footer: #061c30;
+
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Cabinet Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --shadow-about: 0 30px 60px rgba(11, 61, 107, 0.15);
+  --shadow-contact: 0 30px 60px rgba(0, 0, 0, 0.25);
+  --shadow-service: 0 16px 30px rgba(242, 169, 30, 0.15);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.7s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-line-grow {
+    animation: line-grow 0.8s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes trajectory-pulse {
+  0%,
+  100% {
+    stroke-width: 2.5;
+    filter: drop-shadow(0 0 0 rgba(242, 169, 30, 0));
+  }
+  40% {
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px rgba(242, 169, 30, 0.8));
+  }
+}
+
+@layer utilities {
+  .animate-trajectory-pulse {
+    animation: trajectory-pulse 0.9s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-line-grow {
+    animation: none !important;
+  }
+}
