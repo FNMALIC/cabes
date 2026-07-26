@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { navLinks } from "../data/content";
+import { Logo } from "./Logo";
 import { Wrap } from "./Wrap";
 
 export function Footer() {
   return (
     <footer className="bg-footer py-12 pb-6 text-white">
-      <Wrap className="flex flex-wrap items-start justify-between gap-6">
-        <Link to="/" className="font-display text-[26px] font-black tracking-[0.5px]">
-          CABES<span className="text-gold">.</span>
-        </Link>
+      <Wrap className="flex flex-wrap items-center justify-between gap-6">
+        <Logo variant="light" heightClass="h-11 md:h-12" />
         <div className="flex flex-wrap gap-8 text-[13px]">
           {navLinks.map((link) => (
             <Link

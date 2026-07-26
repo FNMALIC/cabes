@@ -3,8 +3,25 @@ import { Wrap } from "./Wrap";
 
 export function Hero() {
   return (
-    <section className="relative [clip-path:polygon(0_0,100%_0,100%_92%,0_100%)] bg-linear-to-br from-blue-night via-blue-deep to-blue pt-[150px] pb-[220px] text-white">
-      <Wrap className="grid max-w-[760px] grid-cols-1">
+    <section className="relative min-h-[100svh] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_92%,0_100%)] text-white">
+      <picture className="absolute inset-0 block">
+        <source srcSet="/images/hero-team.webp" type="image/webp" />
+        <img
+          src="/images/hero-team.jpeg"
+          alt="L'équipe CABES devant les locaux à Douala"
+          width={1280}
+          height={687}
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover object-[center_30%]"
+        />
+      </picture>
+      <div
+        className="absolute inset-0 bg-linear-to-br from-blue-night/92 via-blue-deep/78 to-blue/55"
+        aria-hidden="true"
+      />
+
+      <Wrap className="relative z-[1] grid max-w-[760px] grid-cols-1 pt-[150px] pb-[180px] md:pb-[220px]">
         <div className="animate-fade-up mb-5 font-mono text-xs tracking-[2px] text-gold uppercase [animation-delay:80ms]">
           Cabinet Express Services — Douala
         </div>

@@ -45,6 +45,40 @@
     color: inherit;
     text-decoration: none;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    z-index: 100;
+    transform: translateY(-120%);
+    border-radius: 3px;
+    background: var(--color-gold);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-blue-night);
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(1rem);
+  }
+
+  #main-content:focus {
+    outline: none;
+  }
 }
 
 @layer utilities {

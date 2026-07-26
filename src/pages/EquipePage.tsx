@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { OptimizedImage } from "../components/OptimizedImage";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Wrap } from "../components/Wrap";
@@ -26,7 +27,7 @@ function MemberCard({
       <article className="h-full border border-line bg-white p-7 transition duration-300 hover:border-gold">
         <div className="mb-5 aspect-4/3 bg-linear-to-br from-blue-night to-blue-deep overflow-hidden">
           {image ? (
-            <img
+            <OptimizedImage
               src={image}
               alt={name}
               className="h-full w-full object-cover object-top"
@@ -63,7 +64,7 @@ export function EquipePage() {
           <Reveal from="left">
             <div className="relative aspect-3/4 max-w-[320px] overflow-hidden bg-linear-to-br from-[#123a5e] to-[#0b2540]">
               {directorGeneral.image ? (
-                <img
+                <OptimizedImage
                   src={directorGeneral.image}
                   alt={directorGeneral.name}
                   className="h-full w-full object-cover object-top"

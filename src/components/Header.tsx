@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../data/content";
+import { Logo } from "./Logo";
 import { Wrap } from "./Wrap";
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -10,19 +11,44 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
-    <header className="absolute top-0 right-0 left-0 z-20 py-[26px]">
-      <Wrap className="flex items-center justify-between">
-        <Link
-          to="/"
-          className="animate-fade-in font-display text-[26px] font-black tracking-[0.5px] text-white"
+    <header
+      className={`fixed top-0 right-0 left-0 z-50 transition-[background-color,box-shadow,padding] duration-300 ${
+        scrolled || open
+          ? "bg-blue-night/95 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-md md:py-3.5"
+          : "bg-transparent py-5 md:py-[22px]"
+      }`}
+    >
+      <Wrap className="flex items-center justify-between gap-4">
+        <Logo
+          variant="light"
+          className="animate-fade-in shrink-0"
+          heightClass="h-9 sm:h-10 md:h-11"
           onClick={() => setOpen(false)}
-        >
-          CABES<span className="text-gold">.</span>
-        </Link>
+        />
 
-        <nav className="animate-fade-in hidden gap-[30px] text-sm font-medium text-white md:flex [animation-delay:120ms]">
+        <nav
+          className="animate-fade-in hidden gap-[30px] text-sm font-medium text-white md:flex [animation-delay:120ms]"
+          aria-label="Navigation principale"
+        >
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClass}>
               {link.label}
@@ -41,11 +67,12 @@ export function Header() {
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center text-white md:hidden"
+          aria-controls="mobile-nav"
+          className="flex h-10 w-10 shrink-0 items-center justify-center text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">Menu</span>
-          <span className="flex w-5 flex-col gap-1.5">
+          <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
             <span
               className={`h-px w-full bg-white transition ${open ? "translate-y-[5px] rotate-45" : ""}`}
             />
@@ -60,7 +87,10 @@ export function Header() {
       </Wrap>
 
       {open ? (
-        <div className="absolute top-full right-0 left-0 border-t border-white/10 bg-blue-night/95 backdrop-blur-md md:hidden">
+        <div
+          id="mobile-nav"
+          className="absolute top-full right-0 left-0 border-t border-white/10 bg-blue-night/95 backdrop-blur-md md:hidden"
+        >
           <Wrap className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <NavLink

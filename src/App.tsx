@@ -5,6 +5,7 @@ import { ContactPage } from "./pages/ContactPage";
 import { EquipePage } from "./pages/EquipePage";
 import { ExpertisesPage } from "./pages/ExpertisesPage";
 import { HomePage } from "./pages/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="expertises" element={<ExpertisesPage />} />
           <Route path="equipe" element={<EquipePage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -127,7 +127,7 @@ export const operationalTeam: TeamMember[] = [
     name: "Sédrique Arnauld KAMGANG",
     role: "Opérateur & Community Manager",
     bio: "Responsable de l'animation des communautés en ligne, de la création de contenu et de l'interaction avec les abonnés.",
-    image: "/images/Sédrique.jpeg",
+    image: "/images/sedrique.jpeg",
   },
   {
     name: "Jordan El HERDI FEUMBA DIBAFEU",

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { directorGeneral } from "../data/content";
+import { OptimizedImage } from "./OptimizedImage";
 import { Reveal } from "./Reveal";
 import { Wrap } from "./Wrap";
 
@@ -19,7 +20,7 @@ export function Leadership() {
         <Reveal from="left">
           <div className="relative aspect-3/4 max-w-[320px] overflow-hidden bg-linear-to-br from-[#123a5e] to-[#0b2540]">
             {directorGeneral.image ? (
-              <img
+              <OptimizedImage
                 src={directorGeneral.image}
                 alt={directorGeneral.name}
                 className="h-full w-full object-cover object-top"
