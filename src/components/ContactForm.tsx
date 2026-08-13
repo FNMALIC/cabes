@@ -24,21 +24,42 @@ interface ContactFormProps {
   onSubmitSuccess?: (values: ContactFormValues) => void;
 }
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export function ContactForm({ className = "", onSubmitSuccess }: ContactFormProps) {
   const formId = useId();
   const [form, setForm] = useState<ContactFormValues>(initialForm);
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   const update =
     (field: keyof ContactFormValues) => (value: string) =>
       setForm((prev) => ({ ...prev, [field]: value }));
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Contact request:", form);
-    onSubmitSuccess?.(form);
-    setSent(true);
-    setForm(initialForm);
+    if (!API_URL || submitting) return;
+
+    setSubmitting(true);
+    setError(false);
+
+    try {
+      const response = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!response.ok) throw new Error("Request failed");
+
+      onSubmitSuccess?.(form);
+      setSent(true);
+      setForm(initialForm);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (sent) {
@@ -130,8 +151,18 @@ export function ContactForm({ className = "", onSubmitSuccess }: ContactFormProp
           className="w-full border border-line px-3.5 py-3 font-sans text-sm outline-none transition-colors duration-200 focus:border-blue"
         />
       </div>
-      <Button type="submit" variant="gold" className="w-full text-center">
-        Envoyer la demande
+      {error ? (
+        <p role="alert" className="mb-4 text-sm text-cabes-red">
+          Une erreur est survenue. Merci de réessayer ou de nous contacter directement.
+        </p>
+      ) : null}
+      <Button
+        type="submit"
+        variant="gold"
+        disabled={submitting}
+        className="w-full text-center disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? "Envoi en cours..." : "Envoyer la demande"}
       </Button>
     </form>
   );

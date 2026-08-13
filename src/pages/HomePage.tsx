@@ -4,6 +4,7 @@ import { Hero } from "../components/Hero";
 import { Leadership } from "../components/Leadership";
 import { Services } from "../components/Services";
 import { Stats } from "../components/Stats";
+import { Testimonials } from "../components/Testimonials";
 import { Trajectory } from "../components/Trajectory";
 import { Waypoint } from "../components/Waypoint";
 import { Why } from "../components/Why";
@@ -19,6 +20,7 @@ export function HomePage() {
       <Services />
       <Why />
       <Leadership />
+      <Testimonials />
       <Contact />
     </div>
   );
