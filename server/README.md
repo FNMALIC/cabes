@@ -39,5 +39,5 @@ Admin (require the session cookie from `/auth/login`):
 ## Deployment notes
 
 - Never run `prisma db push` as part of an automatic deploy — run it manually when `schema.prisma` changes.
-- The auth cookie is `SameSite=Lax`; deploy the API and the `admin/` app on subdomains of the same root domain as the public site (e.g. `api.cabes.cm` / `admin.cabes.cm` / `www.cabes.cm`) to keep it same-site. `CORS_ORIGINS` must list every origin allowed to send credentialed requests.
+- The auth cookie is `SameSite=Lax`; deploy the API and the `admin/` app on subdomains of the same root domain as the public site (e.g. `api.cabes-cm.com` / `admin.cabes-cm.com` / `www.cabes-cm.com`) to keep it same-site. `CORS_ORIGINS` must list every origin allowed to send credentialed requests.
 - Free hosting tiers (Render, etc.) sleep after inactivity; since `GET /testimonials` is on the public homepage, pair the deploy with an uptime pinger on `/healthz`.

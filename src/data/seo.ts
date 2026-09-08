@@ -4,18 +4,19 @@ export const siteConfig = {
   legalName: "CABINET EXPRESS SERVICES Sarl",
   tagline: "19 ans d'impact et de performance",
   description:
-    "Cabinet Express Services à Douala : formation, recouvrement, enquêtes sur fraude documentaire, suivi de contrats, affacturage et dossiers sinistres — 19 ans d'expertise.",
+    "CABES, cabinet d'expertise à Douala depuis 19 ans : formation, recouvrement, enquêtes sur fraude documentaire, suivi de contrats, affacturage et sinistres.",
   locale: "fr_CM",
   language: "fr",
-  /** Set VITE_SITE_URL in .env (e.g. https://www.cabes.cm) for absolute canonical/OG URLs. */
+  /** Canonical production origin. Overridable via VITE_SITE_URL in .env for staging/preview builds. */
   get url() {
     const fromEnv = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
     if (fromEnv) return fromEnv;
     if (typeof window !== "undefined") return window.location.origin;
-    return "";
+    return "https://www.cabes-cm.com";
   },
   logo: "/cabes-logo.png",
-  image: "/images/hero-team.jpeg",
+  /** 1200×630 — sized for Open Graph / Twitter card previews. */
+  image: "/images/og-cover.jpg",
   imageAlt: "L'équipe CABES devant les locaux à Douala",
   twitter: "",
   phone: "+237690564474",
@@ -37,6 +38,8 @@ export interface PageSeo {
   noindex?: boolean;
   image?: string;
   imageAlt?: string;
+  /** Short label used in the BreadcrumbList structured data. */
+  navLabel?: string;
 }
 
 const titleSuffix = "CABES | Douala";
@@ -52,30 +55,35 @@ export const pageSeo: Record<string, PageSeo> = {
     title: "CABES — Cabinet Express Services | Douala",
     absoluteTitle: true,
     description: siteConfig.description,
+    navLabel: "Accueil",
   },
   "/cabinet": {
     path: "/cabinet",
     title: "Le Cabinet",
     description:
       "Découvrez CABES : 19 ans d'expertise à Douala, une mission claire et un engagement orienté résultats pour sécuriser et propulser vos activités.",
+    navLabel: "Le Cabinet",
   },
   "/expertises": {
     path: "/expertises",
     title: "Expertises",
     description:
       "Six domaines d'expertise CABES : formation, recouvrement, enquête sur fraude documentaire, suivi des contrats, affacturage et dossiers sinistres.",
+    navLabel: "Expertises",
   },
   "/equipe": {
     path: "/equipe",
     title: "Équipe",
     description:
       "Rencontrez le leadership et l'équipe opérationnelle de CABES — un collectif multidisciplinaire au service de votre performance.",
+    navLabel: "Équipe",
   },
   "/contact": {
     path: "/contact",
     title: "Contact",
     description:
-      "Contactez CABES à Douala : +237 690 564 474 · infos.cabes@gmail.com — réponse sous 24h ouvrées.",
+      "Contactez CABES, cabinet d'expertise à Douala (Bessengué) : +237 690 564 474 · infos.cabes@gmail.com — réponse sous 24h ouvrées.",
+    navLabel: "Contact",
   },
 };
 
