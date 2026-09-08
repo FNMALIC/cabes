@@ -102,6 +102,7 @@ export const topManagement: TeamMember[] = [
     name: "Isabelle Edith FANGOH TIGOUNFACK",
     role: "Directrice Générale Adjointe",
     bio: "Garante de la performance opérationnelle du cabinet.",
+    image: "/images/Isabelle.jpeg",
   },
   {
     name: "Cynthia Lauriane YEMELONG FOUODJI",

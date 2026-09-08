@@ -9,8 +9,8 @@ export function Hero() {
         <img
           src="/images/hero-team.jpeg"
           alt="L'équipe CABES devant les locaux à Douala"
-          width={1280}
-          height={687}
+          width={809}
+          height={1080}
           fetchPriority="high"
           decoding="async"
           className="h-full w-full object-cover object-[center_30%]"
