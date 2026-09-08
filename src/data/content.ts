@@ -114,6 +114,7 @@ export const topManagement: TeamMember[] = [
     name: "Tatiane DJUKA TIOMELA",
     role: "Coordonnatrice",
     bio: "Véritable cheville ouvrière de l'alignement de nos équipes.",
+    image: "/images/Tatiane.jpeg",
   },
 ];
 
