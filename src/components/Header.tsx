@@ -37,11 +37,11 @@ export function Header() {
           : "bg-transparent py-5 md:py-[22px]"
       }`}
     >
-      <Wrap className="flex items-center justify-between gap-4">
+      <Wrap className="grid grid-cols-[40px_1fr_40px] items-center gap-4 sm:flex sm:justify-between">
         <Logo
           variant="light"
-          className="animate-fade-in shrink-0"
-          heightClass="h-14 sm:h-16 md:h-16"
+          className="animate-fade-in col-start-2 shrink-0 justify-self-center sm:justify-self-auto"
+          heightClass="h-16"
           onClick={() => setOpen(false)}
         />
 
@@ -68,7 +68,7 @@ export function Header() {
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="flex h-10 w-10 shrink-0 items-center justify-center text-white md:hidden"
+          className="col-start-3 flex h-10 w-10 shrink-0 items-center justify-center justify-self-end text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">Menu</span>
