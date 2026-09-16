@@ -41,7 +41,7 @@ export function Header() {
         <Logo
           variant="light"
           className="animate-fade-in shrink-0"
-          heightClass="h-9 sm:h-10 md:h-11"
+          heightClass="h-14 sm:h-16 md:h-16"
           onClick={() => setOpen(false)}
         />
 
