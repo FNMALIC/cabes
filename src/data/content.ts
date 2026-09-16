@@ -2,6 +2,8 @@ export const navLinks = [
   { label: "Le Cabinet", to: "/cabinet" },
   { label: "Expertises", to: "/expertises" },
   { label: "Équipe", to: "/equipe" },
+  { label: "Carrières", to: "/carrieres" },
+  { label: "Annonces", to: "/annonces" },
   { label: "Contact", to: "/contact" },
 ] as const;
 

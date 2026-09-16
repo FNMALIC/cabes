@@ -46,7 +46,7 @@ export function Header() {
         />
 
         <nav
-          className="animate-fade-in hidden gap-[30px] text-sm font-medium text-white md:flex [animation-delay:120ms]"
+          className="animate-fade-in hidden gap-5 text-sm font-medium text-white md:flex [animation-delay:120ms]"
           aria-label="Navigation principale"
         >
           {navLinks.map((link) => (

@@ -78,6 +78,20 @@ export const pageSeo: Record<string, PageSeo> = {
       "Rencontrez le leadership et l'équipe opérationnelle de CABES — un collectif multidisciplinaire au service de votre performance.",
     navLabel: "Équipe",
   },
+  "/carrieres": {
+    path: "/carrieres",
+    title: "Offres d'emploi",
+    description:
+      "Rejoignez CABES à Douala : découvrez nos offres d'emploi et postulez pour intégrer un collectif de talents au service de la performance.",
+    navLabel: "Carrières",
+  },
+  "/annonces": {
+    path: "/annonces",
+    title: "Annonces",
+    description:
+      "Toute l'actualité de CABES à Douala : annonces, informations et communications du Cabinet Express Services.",
+    navLabel: "Annonces",
+  },
   "/contact": {
     path: "/contact",
     title: "Contact",
