@@ -6,6 +6,7 @@ export interface JobOffer {
   location?: string | null;
   contractType?: string | null;
   description: string;
+  image?: string | null;
 }
 
 interface UseJobOffersResult {

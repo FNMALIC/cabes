@@ -2,6 +2,8 @@ import { useTestimonials } from "../hooks/useTestimonials";
 import { Reveal } from "./Reveal";
 import { Wrap } from "./Wrap";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export function Testimonials() {
   const { testimonials, loading } = useTestimonials();
 
@@ -25,17 +27,26 @@ export function Testimonials() {
                 <blockquote className="flex-1 text-[15px] text-muted">
                   “{testimonial.quote}”
                 </blockquote>
-                <figcaption className="mt-6">
-                  <div className="font-display text-[15px] font-bold text-blue-night">
-                    {testimonial.authorName}
-                  </div>
-                  {testimonial.authorRole || testimonial.authorCompany ? (
-                    <div className="text-[13px] text-muted">
-                      {[testimonial.authorRole, testimonial.authorCompany]
-                        .filter(Boolean)
-                        .join(" — ")}
-                    </div>
+                <figcaption className="mt-6 flex items-center gap-3">
+                  {testimonial.image ? (
+                    <img
+                      src={`${API_URL}${testimonial.image}`}
+                      alt=""
+                      className="size-11 shrink-0 rounded-full object-cover"
+                    />
                   ) : null}
+                  <div>
+                    <div className="font-display text-[15px] font-bold text-blue-night">
+                      {testimonial.authorName}
+                    </div>
+                    {testimonial.authorRole || testimonial.authorCompany ? (
+                      <div className="text-[13px] text-muted">
+                        {[testimonial.authorRole, testimonial.authorCompany]
+                          .filter(Boolean)
+                          .join(" — ")}
+                      </div>
+                    ) : null}
+                  </div>
                 </figcaption>
               </figure>
             </Reveal>

@@ -3,6 +3,8 @@ import { Reveal } from "../components/Reveal";
 import { Wrap } from "../components/Wrap";
 import { useAnnouncements } from "../hooks/useAnnouncements";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export function AnnoncesPage() {
   const { announcements, loading } = useAnnouncements();
 
@@ -24,7 +26,15 @@ export function AnnoncesPage() {
             <div className="flex flex-col gap-5">
               {announcements.map((announcement, index) => (
                 <Reveal key={announcement.id} delay={index * 60}>
-                  <article className="border border-line bg-white px-[26px] py-[30px]">
+                  <article className="border border-line bg-white">
+                    {announcement.image ? (
+                      <img
+                        src={`${API_URL}${announcement.image}`}
+                        alt=""
+                        className="h-52 w-full object-cover"
+                      />
+                    ) : null}
+                    <div className="px-[26px] py-[30px]">
                     <time
                       dateTime={announcement.createdAt}
                       className="font-mono text-[11px] tracking-[1.5px] text-blue uppercase"
@@ -41,6 +51,7 @@ export function AnnoncesPage() {
                     <p className="whitespace-pre-wrap text-[14px] leading-relaxed text-muted">
                       {announcement.content}
                     </p>
+                    </div>
                   </article>
                 </Reveal>
               ))}

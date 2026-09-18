@@ -7,6 +7,7 @@ export interface Testimonial {
   authorCompany?: string | null;
   quote: string;
   rating?: number | null;
+  image?: string | null;
 }
 
 interface UseTestimonialsResult {

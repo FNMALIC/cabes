@@ -4,6 +4,8 @@ import { Reveal } from "../components/Reveal";
 import { Wrap } from "../components/Wrap";
 import { useJobOffers } from "../hooks/useJobOffers";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export function CarrieresPage() {
   const { jobOffers, loading } = useJobOffers();
 
@@ -31,7 +33,15 @@ export function CarrieresPage() {
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {jobOffers.map((jobOffer, index) => (
                 <Reveal key={jobOffer.id} delay={index * 60}>
-                  <article className="flex h-full flex-col border border-line bg-white px-[26px] py-[30px]">
+                  <article className="flex h-full flex-col border border-line bg-white">
+                    {jobOffer.image ? (
+                      <img
+                        src={`${API_URL}${jobOffer.image}`}
+                        alt=""
+                        className="h-44 w-full object-cover"
+                      />
+                    ) : null}
+                    <div className="flex flex-1 flex-col px-[26px] py-[30px]">
                     <h2 className="font-display mb-2 text-[20px] font-bold text-blue-night">
                       {jobOffer.title}
                     </h2>
@@ -58,6 +68,7 @@ export function CarrieresPage() {
                     >
                       Postuler
                     </Link>
+                    </div>
                   </article>
                 </Reveal>
               ))}
