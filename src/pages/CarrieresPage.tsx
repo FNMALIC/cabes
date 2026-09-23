@@ -56,7 +56,7 @@ export function CarrieresPage() {
                       <h2 className="font-display mb-2 text-[20px] font-bold text-blue-night line-clamp-2">
                         {jobOffer.title}
                       </h2>
-                      {jobOffer.location || jobOffer.contractType ? (
+                      {jobOffer.location || jobOffer.contractType || jobOffer.positions ? (
                         <div className="mb-4 flex flex-wrap gap-2 font-mono text-[11px] tracking-[1px] text-blue uppercase">
                           {jobOffer.contractType ? (
                             <span className="bg-blue/10 rounded-[3px] px-2.5 py-1">
@@ -66,6 +66,11 @@ export function CarrieresPage() {
                           {jobOffer.location ? (
                             <span className="bg-blue/10 rounded-[3px] px-2.5 py-1">
                               {jobOffer.location}
+                            </span>
+                          ) : null}
+                          {jobOffer.positions ? (
+                            <span className="bg-gold/15 text-blue-night rounded-[3px] px-2.5 py-1">
+                              {jobOffer.positions} {jobOffer.positions > 1 ? "postes" : "poste"}
                             </span>
                           ) : null}
                         </div>

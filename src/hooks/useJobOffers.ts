@@ -5,6 +5,7 @@ export interface JobOffer {
   title: string;
   location?: string | null;
   contractType?: string | null;
+  positions: number;
   description: string;
   image?: string | null;
 }
