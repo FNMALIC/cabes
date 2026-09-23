@@ -1,5 +1,6 @@
 import { About } from "../components/About";
 import { Contact } from "../components/Contact";
+import { Flyers } from "../components/Flyers";
 import { Hero } from "../components/Hero";
 import { Leadership } from "../components/Leadership";
 import { Services } from "../components/Services";
@@ -19,6 +20,7 @@ export function HomePage() {
       <Stats />
       <Services />
       <Why />
+      <Flyers />
       <Leadership />
       <Testimonials />
       <Contact />
