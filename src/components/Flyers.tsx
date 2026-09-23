@@ -22,19 +22,10 @@ export function Flyers() {
 
   if (loading || flyers.length === 0) return null;
 
-  const current = flyers[index];
   const goTo = (i: number) => setIndex((i + flyers.length) % flyers.length);
 
-  const image = (
-    <img
-      src={`${API_URL}${current.image}`}
-      alt={current.title ?? ""}
-      className="h-full w-full object-cover"
-    />
-  );
-
   return (
-    <section className="bg-bg-alt py-[90px]">
+    <section className="relative z-[2] bg-bg-alt py-[90px]">
       <Wrap>
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[0.75fr_1fr]">
           <Reveal from="left">
@@ -92,24 +83,45 @@ export function Flyers() {
               onMouseLeave={() => setPaused(false)}
               className="relative mx-auto aspect-[3/4] w-full max-w-[380px] overflow-hidden border border-line bg-white shadow-about"
             >
-              {current.link ? (
-                current.link.startsWith("/") ? (
-                  <Link to={current.link} aria-label={current.title ?? "Voir le flyer"}>
-                    {image}
-                  </Link>
+              {flyers.map((flyer, i) => {
+                const img = (
+                  <img
+                    src={`${API_URL}${flyer.image}`}
+                    alt={flyer.title ?? ""}
+                    className="h-full w-full object-cover"
+                  />
+                );
+                const content = flyer.link ? (
+                  flyer.link.startsWith("/") ? (
+                    <Link to={flyer.link} aria-label={flyer.title ?? "Voir le flyer"} className="block h-full w-full">
+                      {img}
+                    </Link>
+                  ) : (
+                    <a
+                      href={flyer.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={flyer.title ?? "Voir le flyer"}
+                      className="block h-full w-full"
+                    >
+                      {img}
+                    </a>
+                  )
                 ) : (
-                  <a
-                    href={current.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={current.title ?? "Voir le flyer"}
+                  img
+                );
+
+                return (
+                  <div
+                    key={flyer.id}
+                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                      i === index ? "opacity-100" : "pointer-events-none opacity-0"
+                    }`}
                   >
-                    {image}
-                  </a>
-                )
-              ) : (
-                image
-              )}
+                    {content}
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </div>
