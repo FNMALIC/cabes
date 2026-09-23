@@ -112,7 +112,7 @@ export function CarrieresPage() {
                 {selectedJob.title}
               </h2>
               
-              {(selectedJob.location || selectedJob.contractType) && (
+              {(selectedJob.location || selectedJob.contractType || selectedJob.positions) && (
                 <div className="mb-8 flex flex-wrap gap-2 font-mono text-xs tracking-[1px] text-blue uppercase">
                   {selectedJob.contractType && (
                     <span className="bg-blue/10 rounded-[3px] px-3 py-1.5">
@@ -124,6 +124,11 @@ export function CarrieresPage() {
                       {selectedJob.location}
                     </span>
                   )}
+                  {selectedJob.positions ? (
+                    <span className="bg-gold/15 text-blue-night rounded-[3px] px-3 py-1.5">
+                      {selectedJob.positions} {selectedJob.positions > 1 ? "postes" : "poste"}
+                    </span>
+                  ) : null}
                 </div>
               )}
               
