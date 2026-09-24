@@ -11,7 +11,7 @@ export function ContactPage() {
       <PageHero
         kicker="Contact"
         title="Prendre rendez-vous"
-        subtitle="Nos équipes vous répondent sous 24h ouvrées."
+        subtitle="Nos équipes vous répondront sous 24h ouvrées."
       />
 
       <section className="bg-blue-night py-[90px] text-white">

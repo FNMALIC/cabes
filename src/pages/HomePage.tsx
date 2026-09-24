@@ -20,8 +20,8 @@ export function HomePage() {
       <Stats />
       <Services />
       <Why />
-      <Flyers />
       <Leadership />
+      <Flyers />
       <Testimonials />
       <Contact />
     </div>

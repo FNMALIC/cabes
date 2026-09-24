@@ -17,7 +17,7 @@ export function Contact() {
               Prendre rendez-vous
             </h2>
             <p className="mb-10 max-w-[600px] text-slate-mid">
-              Nos équipes vous répondent sous 24h ouvrées.
+              Nos équipes vous répondront sous 24h ouvrées.
             </p>
             {contactInfo.map((row) => (
               <div
