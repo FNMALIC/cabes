@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { AnnoncesPage } from "./pages/AnnoncesPage";
+import { AvisPage } from "./pages/AvisPage";
 import { CabinetPage } from "./pages/CabinetPage";
 import { CarrieresPage } from "./pages/CarrieresPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="equipe" element={<EquipePage />} />
           <Route path="carrieres" element={<CarrieresPage />} />
           <Route path="annonces" element={<AnnoncesPage />} />
+          <Route path="avis" element={<AvisPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

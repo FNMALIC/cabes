@@ -92,6 +92,13 @@ export const pageSeo: Record<string, PageSeo> = {
       "Toute l'actualité de CABES à Douala : annonces, informations et communications du Cabinet Express Services.",
     navLabel: "Annonces",
   },
+  "/avis": {
+    path: "/avis",
+    title: "Laisser un avis",
+    description:
+      "Partagez votre expérience avec CABES à Douala : laissez un avis et une note sur nos services.",
+    navLabel: "Laisser un avis",
+  },
   "/contact": {
     path: "/contact",
     title: "Contact",
