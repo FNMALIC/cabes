@@ -22,9 +22,30 @@ export function Hero() {
       />
 
       <Wrap className="relative z-[1] grid max-w-[760px] grid-cols-1 pt-[150px] pb-[180px] md:pb-[220px]">
-        <div className="animate-fade-up mb-5 font-mono text-xs tracking-[2px] text-gold uppercase [animation-delay:80ms]">
-          Cabinet Express Services — Douala
-        </div>
+        <address className="animate-fade-up mb-6 not-italic [animation-delay:80ms]">
+          <div className="mb-2 font-mono text-xs tracking-[2px] text-gold uppercase">
+            Cabinet Express Services
+          </div>
+          <p className="text-[13px] leading-relaxed text-slate-soft">
+            Siège social / Direction Générale : Douala – Cameroun
+            <br />
+            Entrée de la gare Bessengué · Rue 14 177, Case 451
+            <br />
+            <a
+              href="tel:+237690564474"
+              className="text-white underline-offset-2 hover:underline"
+            >
+              (+237) 690 564 474
+            </a>
+            {" · "}
+            <a
+              href="mailto:infos.cabes@gmail.com"
+              className="text-white underline-offset-2 hover:underline"
+            >
+              infos.cabes@gmail.com
+            </a>
+          </p>
+        </address>
         <h1 className="animate-fade-up font-display text-[38px] leading-[1.05] font-black tracking-[-1px] md:text-[56px] [animation-delay:180ms]">
           19 ans d&apos;impact
           <br />
