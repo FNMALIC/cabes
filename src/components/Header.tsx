@@ -31,13 +31,50 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-[background-color,box-shadow,padding] duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-[background-color,box-shadow] duration-300 ${
         scrolled || open
-          ? "bg-blue-night/95 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-md md:py-3.5"
-          : "bg-transparent py-5 md:py-[22px]"
+          ? "bg-blue-night/95 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-md"
+          : "bg-transparent"
       }`}
     >
-      <Wrap className="grid grid-cols-[40px_1fr_40px] items-center gap-4 sm:flex sm:justify-between">
+      <div
+        className={`grid bg-blue-night/80 text-slate-soft transition-[grid-template-rows] duration-300 ${
+          scrolled ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+        }`}
+      >
+        <address className="overflow-hidden not-italic">
+          <Wrap className="flex flex-col items-center gap-0.5 border-b border-white/10 py-2 text-center text-[11px] leading-snug md:flex-row md:flex-wrap md:justify-center md:gap-x-2 md:text-xs">
+            <span className="hidden font-mono tracking-[1.5px] text-gold uppercase md:inline">
+              Cabinet Express Services
+            </span>
+            <span className="hidden text-white/30 md:inline">|</span>
+            <span>Siège social / Direction Générale : Douala – Cameroun</span>
+            <span className="hidden text-white/30 md:inline">·</span>
+            <span>Entrée de la gare Bessengué · Rue 14 177, Case 451</span>
+            <span className="md:basis-full">
+              <a
+                href="tel:+237690564474"
+                className="text-white underline-offset-2 hover:underline"
+              >
+                (+237) 690 564 474
+              </a>
+              {" · "}
+              <a
+                href="mailto:infos.cabes@gmail.com"
+                className="text-white underline-offset-2 hover:underline"
+              >
+                infos.cabes@gmail.com
+              </a>
+            </span>
+          </Wrap>
+        </address>
+      </div>
+
+      <Wrap
+        className={`grid transition-[padding] duration-300 ${
+          scrolled || open ? "py-3 md:py-3.5" : "py-5 md:py-[22px]"
+        } grid-cols-[40px_1fr_40px] items-center gap-4 sm:flex sm:justify-between`}
+      >
         <Logo
           variant="light"
           className="animate-fade-in col-start-2 shrink-0 justify-self-center sm:justify-self-auto"

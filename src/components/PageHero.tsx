@@ -11,7 +11,7 @@ interface PageHeroProps {
 
 export function PageHero({ kicker, title, subtitle, children }: PageHeroProps) {
   return (
-    <section className="relative bg-linear-to-br from-blue-night via-blue-deep to-blue pt-[140px] pb-20 text-white md:pb-24">
+    <section className="relative bg-linear-to-br from-blue-night via-blue-deep to-blue pt-[200px] pb-20 md:pt-[180px] text-white md:pb-24">
       <Wrap className="max-w-[760px]">
         <p className="animate-fade-up mb-5 font-mono text-xs tracking-[2px] text-gold uppercase">
           {kicker}
@@ -25,7 +25,9 @@ export function PageHero({ kicker, title, subtitle, children }: PageHeroProps) {
           </p>
         ) : null}
         {children ? (
-          <div className="animate-fade-up mt-8 [animation-delay:300ms]">{children}</div>
+          <div className="animate-fade-up mt-8 [animation-delay:300ms]">
+            {children}
+          </div>
         ) : null}
         <div className="animate-fade-up mt-8 [animation-delay:280ms]">
           <Link
